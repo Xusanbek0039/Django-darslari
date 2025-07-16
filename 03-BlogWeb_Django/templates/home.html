@@ -3,14 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>Yangiliklar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #004080;
+            color: white;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        li {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #004080;
+            margin-top: 0;
+        }
+
+        li p {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .post-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
     <h1>KUN YANGILIKLARI</h1>
     <ul>
         {% for post in object_list %}
-            <li><h2>{{ post.title }}</h2></br>{{ post.text }}</li></br>
+            <li>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.text }}</p>
+
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+                {% endif %}
+            </li>
         {% endfor %}
     </ul>
-
 </body>
 </html>
