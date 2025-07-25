@@ -1,9 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Postni o'chirish</h1>
-  <form action="" method="post">{% csrf_token %}
-    <p>"{{ post.title }}" postini o'chirishni xohlaysizmi?</p>
-    <input type="submit" value="O'chirish">
-  </form>
+  <div style="max-width: 600px; margin: 50px auto; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); font-family: sans-serif;">
+
+    <h1 style="text-align: center; color: #d32f2f; margin-bottom: 20px;">
+      Postni o'chirish
+    </h1>
+
+    <form action="" method="post" style="text-align: center;">
+      {% csrf_token %}
+      <p style="font-size: 18px; color: #333; margin-bottom: 30px;">
+        <strong>"{{ post.title }}"</strong> postini o‘chirishni xohlaysizmi?
+      </p>
+
+      <div style="display: flex; justify-content: center; gap: 15px;">
+        <button type="submit" style="background-color: #d32f2f; color: white; padding: 10px 25px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">
+          Ha, o‘chirish
+        </button>
+        <a href="{% url 'post_detail' post.pk %}" style="background-color: #f1f1f1; color: #333; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+          Yo‘q, qaytish
+        </a>
+      </div>
+    </form>
+
+  </div>
 {% endblock content %}

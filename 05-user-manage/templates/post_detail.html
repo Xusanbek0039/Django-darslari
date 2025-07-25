@@ -1,10 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="post-entry">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <article class="post-detail">
     <h2>{{ post.title }}</h2>
-    <p>{{ post.body }}</p>
-  </div>
-  <p><a href="{% url 'post_edit' post.pk %}">Postni tahrirlash</a> |
-  <a href="{% url 'post_delete' post.pk %}">Postni o'chirish</a></p>
+    <p class="post-body">{{ post.body }}</p>
+
+    <div class="post-actions">
+      <a href="{% url 'post_edit' post.pk %}" class="btn edit-btn">
+        <i class="fas fa-edit"></i> Tahrirlash
+      </a>
+      <a href="{% url 'post_delete' post.pk %}" class="btn delete-btn">
+        <i class="fas fa-trash-alt"></i> O‘chirish
+      </a>
+    </div>
+  </article>
 {% endblock content %}

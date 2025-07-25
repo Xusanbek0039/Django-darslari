@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  <section class="post-list">
     {% for post in object_list %}
-        <div class="post_entry">
-            <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-            <p>{{ post.body | slice:":100" }}...</p>
-        </div>
+      <article class="post-card">
+        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+        <p>{{ post.body|slice:":100" }}...</p>
+        <a class="read-more" href="{% url 'post_detail' post.pk %}">Batafsil →</a>
+      </article>
+    {% empty %}
+      <p>Hozircha hech qanday post mavjud emas.</p>
     {% endfor %}
+  </section>
 {% endblock content %}

@@ -4,36 +4,107 @@
 <head>
     <meta charset="UTF-8">
     <title>Django Blog</title>
+<style>
+
+    body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 960px;
+    margin: auto;
+    padding: 20px;
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #20232a;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.nav-left h1, .nav-left a, .nav-right a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.nav-left h1 a:hover,
+.nav-left a:hover,
+.nav-right a:hover {
+    text-decoration: underline;
+}
+
+.auth-block {
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.auth-block a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.auth-block a:hover {
+    text-decoration: underline;
+}
+
+main {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+</style>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="icon" href="{% static 'f.png' %}">
 </head>
 <body>
-    <div>
-      <header>
-          <div class="nav-left">
-              <h1><a href="{% url 'home' %}">SariqDev blog</a></h1>
-          </div>
-          <div class="nav-righ">
-              <a href="{% url 'post_new' %}">+ Yangi Post qo'shish</a>
-          </div>
-      </header>
-        {% if user.is_authenticated %}
-            <p>Xush kelibsiz, {{ user.username }}!</p>
-            <p><a href="{% url 'logout' %}">Saytdan chiqish</a></p>
-        {% else %}
-            <p>
-                <a href="{% url 'login' %}">Saytga kirish</a> |
-                <a href="{% url 'signup' %}">Ro'yxatdan o'tish</a>
-
-            </p>
-
-        {% endif %}
-      <div>
-        {% block content %}
-        {% endblock content %}
+  <div class="container">
+    <header class="site-header">
+      <div class="nav-left">
+        <h1><a href="{% url 'home' %}"><i class="fas fa-laptop-code"></i> ITC Blog</a></h1>
+        <a href="{% url 'about' %}"><i class="fas fa-user-circle"></i> Men haqimda</a>
       </div>
+      <div class="nav-right">
+        <a href="{% url 'post_new' %}"><i class="fas fa-plus-circle"></i> Yangi Post qo‘shish</a>
+      </div>
+    </header>
+
+    <div class="auth-block">
+      {% if user.is_authenticated %}
+        <p><i class="fas fa-user"></i> Xush kelibsiz, <strong>{{ user.username }}</strong>!</p>
+        <p><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Saytdan chiqish</a></p>
+      {% else %}
+        <p>
+          <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Saytga kirish</a> |
+          <a href="{% url 'signup' %}"><i class="fas fa-user-plus"></i> Ro'yxatdan o'tish</a>
+        </p>
+      {% endif %}
     </div>
+
+    <main>
+      {% block content %}
+      {% endblock content %}
+    </main>
+  </div>
 </body>
 </html>

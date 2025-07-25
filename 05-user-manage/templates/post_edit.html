@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Tahrirlash</h1>
-  <form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Yangilash">
-  </form>
+  <div class="edit-post-container">
+    <h1 class="form-title">✏️ Postni tahrirlash</h1>
+
+    <form action="" method="post" class="edit-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn update-btn">💾 Yangilash</button>
+    </form>
+  </div>
 {% endblock content %}
