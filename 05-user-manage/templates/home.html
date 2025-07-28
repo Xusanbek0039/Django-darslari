@@ -4,6 +4,12 @@
   <section class="post-list">
     {% for post in object_list %}
       <article class="post-card">
+        {% if post.image %}
+          <div class="post-image">
+            <img src="{{ post.image.url }}" alt="Post image" style="max-width: 100%; height: auto;">
+          </div>
+        {% endif %}
+        
         <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
         <p>{{ post.body|slice:":100" }}...</p>
         <a class="read-more" href="{% url 'post_detail' post.pk %}">Batafsil →</a>

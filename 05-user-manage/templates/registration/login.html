@@ -1,9 +1,49 @@
 {% extends 'base.html' %}
 
-{%block content %}
-<h2>Saytga kirish</h2>
-<form method="post">{% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Kirish</button>
-</form>
+{% block content %}
+  <div style="
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', sans-serif;
+  ">
+    <h2 style="text-align: center; color: #228B22; margin-bottom: 20px;">🔐 Saytga Kirish</h2>
+    
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        {{ form.as_p }}
+        
+        {% if form.non_field_errors %}
+          <div style="color: red; font-size: 0.9rem;">
+            {{ form.non_field_errors }}
+          </div>
+        {% endif %}
+
+        {# CAPTCHA qo‘shish #}
+        {% if form.captcha %}
+          <div>
+            {{ form.captcha.label_tag }}
+            {{ form.captcha }}
+          </div>
+        {% endif %}
+
+        <button type="submit" style="
+          padding: 12px;
+          background-color: #228B22;
+          color: #fff;
+          border: none;
+          border-radius: 8px;
+          font-size: 1rem;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        " onmouseover="this.style.backgroundColor='#1a6e1a'" onmouseout="this.style.backgroundColor='#228B22'">
+          🚪 Kirish
+        </button>
+      </div>
+    </form>
+  </div>
 {% endblock content %}

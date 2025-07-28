@@ -3,8 +3,9 @@
 {% block content %}
   <div class="form-container">
     <h1>📝 Yangi post yaratish</h1>
-    
-    <form action="" method="post" novalidate>
+
+    <!-- enctype juda muhim! -->
+    <form action="" method="post" enctype="multipart/form-data" novalidate>
       {% csrf_token %}
       {{ form.as_p }}
 

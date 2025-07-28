@@ -1,81 +1,119 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <title>Django Blog</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Django Blog</title>
 
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'f.png' %}">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <style>
     body {
-    font-family: 'Noto Sans JP', sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
-}
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
 
-.container {
-    max-width: 960px;
-    margin: auto;
-    padding: 20px;
-}
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 15px;
+    }
 
-.site-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #20232a;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
+    .site-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #20232a;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
 
-.nav-left h1, .nav-left a, .nav-right a {
-    color: white;
-    text-decoration: none;
-    margin-right: 20px;
-    font-weight: bold;
-}
+    .site-header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
 
-.nav-left h1 a:hover,
-.nav-left a:hover,
-.nav-right a:hover {
-    text-decoration: underline;
-}
+    .nav-left,
+    .nav-right {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-.auth-block {
-    margin-bottom: 15px;
-    font-size: 15px;
-}
+    .nav-left a,
+    .nav-right a {
+      color: white;
+      text-decoration: none;
+      margin-right: 15px;
+      font-weight: bold;
+      font-size: 1rem;
+    }
 
-.auth-block a {
-    color: #007bff;
-    text-decoration: none;
-}
+    .nav-left a:hover,
+    .nav-right a:hover {
+      text-decoration: underline;
+    }
 
-.auth-block a:hover {
-    text-decoration: underline;
-}
+    .auth-block {
+      margin-bottom: 15px;
+      font-size: 15px;
+      text-align: center;
+    }
 
-main {
-    background-color: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
+    .auth-block a {
+      color: #007bff;
+      text-decoration: none;
+    }
 
-</style>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    .auth-block a:hover {
+      text-decoration: underline;
+    }
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    main {
+      background-color: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="icon" href="{% static 'f.png' %}">
+    /* Mobil uchun */
+    @media (max-width: 768px) {
+      .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-left,
+      .nav-right {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .nav-left a,
+      .nav-right a {
+        margin: 5px 0;
+      }
+
+      .auth-block {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -85,18 +123,18 @@ main {
         <a href="{% url 'about' %}"><i class="fas fa-user-circle"></i> Men haqimda</a>
       </div>
       <div class="nav-right">
-        <a href="{% url 'post_new' %}"><i class="fas fa-plus-circle"></i> Yangi Post qo‘shish</a>
+        <a href="{% url 'post_new' %}"><i class="fas fa-plus-circle"></i> Yangi post</a>
       </div>
     </header>
 
     <div class="auth-block">
       {% if user.is_authenticated %}
-        <p><i class="fas fa-user"></i> Xush kelibsiz, <strong>{{ user.username }}</strong>!</p>
-        <p><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Saytdan chiqish</a></p>
+        <p><i class="fas fa-user"></i> Salom, <strong>{{ user.username }}</strong>!</p>
+        <p><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Chiqish</a></p>
       {% else %}
         <p>
-          <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Saytga kirish</a> |
-          <a href="{% url 'signup' %}"><i class="fas fa-user-plus"></i> Ro'yxatdan o'tish</a>
+          <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Kirish</a> |
+          <a href="{% url 'signup' %}"><i class="fas fa-user-plus"></i> Ro‘yxatdan o‘tish</a>
         </p>
       {% endif %}
     </div>

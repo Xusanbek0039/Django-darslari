@@ -16,3 +16,5 @@ urlpatterns = [
     path('', BlogListView.as_view(), name='home'),
     path('about/', AboutPageView.as_view(), name='about'),
 ]
+
+

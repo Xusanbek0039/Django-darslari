@@ -3,17 +3,26 @@
 {% block content %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <article class="post-detail">
-    <h2>{{ post.title }}</h2>
-    <p class="post-body">{{ post.body }}</p>
+<article class="post-detail" style="max-width: 800px; margin: 0 auto; padding: 20px;">
+  <h2 style="font-size: 2rem; margin-bottom: 10px;">{{ post.title }}</h2>
 
-    <div class="post-actions">
-      <a href="{% url 'post_edit' post.pk %}" class="btn edit-btn">
-        <i class="fas fa-edit"></i> Tahrirlash
-      </a>
-      <a href="{% url 'post_delete' post.pk %}" class="btn delete-btn">
-        <i class="fas fa-trash-alt"></i> O‘chirish
-      </a>
+  {% if post.image %}
+    <div class="post-image" style="margin-bottom: 15px;">
+      <img src="{{ post.image.url }}" alt="Post image" style="max-width: 100%; border-radius: 8px;">
     </div>
-  </article>
+  {% endif %}
+
+  <p class="post-body" style="font-size: 1.1rem; line-height: 1.6; color: #333;">
+    {{ post.body }}
+  </p>
+
+  <div class="post-actions" style="margin-top: 20px;">
+    <a href="{% url 'post_edit' post.pk %}" class="btn edit-btn" style="margin-right: 10px; padding: 8px 16px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">
+      <i class="fas fa-edit"></i> Tahrirlash
+    </a>
+    <a href="{% url 'post_delete' post.pk %}" class="btn delete-btn" style="padding: 8px 16px; background-color: #f44336; color: white; text-decoration: none; border-radius: 5px;">
+      <i class="fas fa-trash-alt"></i> O‘chirish
+    </a>
+  </div>
+</article>
 {% endblock content %}
