@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'accounts',
-    'news',
     'articles',
 ]
 
@@ -86,8 +85,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": env.dj_db_url("DATABASE_URL")
+# } #malumotlar bazasiga manzil
 DATABASES = {
-    "default": env.dj_db_url("DATABASE_URL")
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -113,9 +118,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'uz'
 
-TIME_ZONE = 'Asia/Samarkand'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
