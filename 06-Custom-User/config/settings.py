@@ -21,16 +21,13 @@ env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DEBUG", default=False)
+DEBUG = env.bool("DEBUG", default=True)
 
-ALLOWED_HOSTS = ['.herokuapp.com','127.0.0.1','localhost']
+ALLOWED_HOSTS = ["itclms.uz"]
 
 
 # Application definition
@@ -43,9 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic', # new
     'django.contrib.staticfiles',
+    # O'rnatilinadigan
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
+    # O'zim yaratgan applar
     'accounts',
     'articles',
 ]
@@ -88,6 +87,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # DATABASES = {
 #     "default": env.dj_db_url("DATABASE_URL")
 # } #malumotlar bazasiga manzil
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -95,6 +95,22 @@ DATABASES = {
     }
 }
 
+
+
+# pip install djongo
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'your_db_name',
+#         'ENFORCE_SCHEMA': False,
+#         'CLIENT': {
+#             'host': 'mongodb+srv://<username>:<password>@cluster0.mongodb.net/your_db_name?retryWrites=true&w=majority',
+#             'username': '<username>',
+#             'password': '<password>',
+#         } 
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -165,7 +181,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-DEFAULT_FROM_EMAIL = 'your_custom_email_account'
+DEFAULT_FROM_EMAIL = 'itpark0071@gmail.com'
 EMAIL_HOST = 'smtp'
 EMAIL_HOST_USER = 'username'
 EMAIL_HOST_PASSWORD = 'password'

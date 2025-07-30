@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # tashqi app
     'crispy_forms',
+    "crispy_bootstrap4",
     'ckeditor',
     'ckeditor_uploader',
     # men o'zim yaratgan applar
